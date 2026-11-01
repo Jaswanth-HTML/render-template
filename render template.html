@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Generator</title>
+</head>
+<body>
+
+    <h2>Resume Builder</h2>
+    
+    <form method="POST">
+        <h3>Personal Details</h3>
+        <label>Full Name:</label><br>
+        <input type="text" name="name" required><br><br>
+
+        <label>Professional Title:</label><br>
+        <input type="text" name="title" required><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label>Phone:</label><br>
+        <input type="text" name="phone"><br><br>
+
+        <label>Location:</label><br>
+        <input type="text" name="location"><br><br>
+
+        <h3>Professional Summary</h3>
+        <textarea name="summary" rows="4" cols="50"></textarea><br><br>
+
+        <h3>Experience</h3>
+        <textarea name="experience" rows="4" cols="50"></textarea><br><br>
+
+        <h3>Education</h3>
+        <textarea name="education" rows="3" cols="50"></textarea><br><br>
+
+        <h3>Skills (comma separated)</h3>
+        <input type="text" name="skills" placeholder="Python, Flask, HTML, JavaScript"><br><br>
+
+        <button type="submit">Generate Resume</button>
+    </form>
+
+    <hr>
+
+    {% if resume %}
+    <div>
+        <h2>{{ resume.name }}</h2>
+        <h4>{{ resume.title }}</h4>
+        <p><strong>Email:</strong> {{ resume.email }} | <strong>Phone:</strong> {{ resume.phone }} | <strong>Location:</strong> {{ resume.location }}</p>
+
+        {% if resume.summary %}
+            <h3>Summary</h3>
+            <p>{{ resume.summary }}</p>
+        {% endif %}
+
+        {% if resume.experience %}
+            <h3>Experience</h3>
+            <p>{{ resume.experience }}</p>
+        {% endif %}
+
+        {% if resume.education %}
+            <h3>Education</h3>
+            <p>{{ resume.education }}</p>
+        {% endif %}
+
+        {% if resume.skills %}
+            <h3>Skills</h3>
+            <ul>
+                {% for skill in resume.skills %}
+                    <li>{{ skill }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+    {% endif %}
+
+</body>
+</html>
